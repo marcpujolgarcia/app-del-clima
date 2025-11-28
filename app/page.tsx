@@ -10,6 +10,11 @@ import Chart from "chart.js/auto";
 
 const API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
 
+type DayAgg = {
+  temps: number[];
+  icon: string;
+};
+
 export default function Page() {
   const [city, setCity] = useState("Barcelona");
   const [weather, setWeather] = useState<any>(null);
@@ -98,14 +103,17 @@ export default function Page() {
       iconUrl: `https://openweathermap.org/img/wn/${item.weather[0].icon}.png`,
     }));
 
-  const byDay = new Map<string, { temps: number[]; icon: string }>();
+  // Acumulador diario tipado para evitar never[]
+  const byDay = new Map<string, DayAgg>();
   (forecast?.list || []).forEach((item: any) => {
     const date = new Date(item.dt * 1000);
     const key = date.toLocaleDateString("es-ES", { weekday: "long" });
-    const prev = byDay.get(key) || { temps: [], icon: item.weather[0].icon };
+    const prev: DayAgg =
+      byDay.get(key) ?? { temps: [], icon: item.weather[0].icon };
     prev.temps.push(item.main.temp);
     byDay.set(key, prev);
   });
+
   const days: DayItem[] = Array.from(byDay.entries())
     .slice(0, 7)
     .map(([label, v]) => ({
@@ -157,6 +165,10 @@ export default function Page() {
         },
       },
     });
+
+    return () => {
+      chartInstanceDesktop.current?.destroy?.();
+    };
   }, [days]);
 
   // Gráfico móvil (3 días)
@@ -199,6 +211,10 @@ export default function Page() {
         },
       },
     });
+
+    return () => {
+      chartInstanceMobile.current?.destroy?.();
+    };
   }, [days]);
 
   return (
