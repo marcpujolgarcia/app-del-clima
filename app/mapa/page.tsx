@@ -1,7 +1,8 @@
 "use client";
+
 import { useState } from "react";
 import Sidebar from "@/components/Sidebar";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import dynamic from "next/dynamic";
 import L from "leaflet";
 
 const API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
@@ -15,6 +16,24 @@ type CityWeather = {
   icon: string;
   description: string;
 };
+
+// Importamos los componentes de react-leaflet de forma dinámica (solo cliente)
+const MapContainer = dynamic(
+  () => import("react-leaflet").then((mod) => mod.MapContainer),
+  { ssr: false }
+);
+const TileLayer = dynamic(
+  () => import("react-leaflet").then((mod) => mod.TileLayer),
+  { ssr: false }
+);
+const Marker = dynamic(
+  () => import("react-leaflet").then((mod) => mod.Marker),
+  { ssr: false }
+);
+const Popup = dynamic(
+  () => import("react-leaflet").then((mod) => mod.Popup),
+  { ssr: false }
+);
 
 export default function MapaPage() {
   const [query, setQuery] = useState("");
@@ -70,7 +89,6 @@ export default function MapaPage() {
     });
 
   return (
-    // 👉 padding-top en móvil para que el buscador no quede tapado por el menú superior
     <main className="min-h-screen bg-[#0B1220] text-white pt-20 md:pt-0 relative">
       <div className="max-w-7xl mx-auto p-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-[256px_1fr] gap-6">
