@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# App del clima
 
-## Getting Started
+Aplicación web responsive (mobile-first) para consultar clima actual, pronóstico de hoy, condiciones del aire y pronóstico de 7 días, con gráficas sencillas.
 
-First, run the development server:
+## Demo
+(añadiré aquí el enlace de Vercel cuando lo tenga)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Tecnologías
+- Next.js, React
+- Tailwind CSS
+- Chart.js
+- OpenWeather API (clima), Open-Meteo (mar)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Características
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 📌 Menú Clima
+- **Buscador de ciudades con geolocalización inicial**: al abrir la app detecta tu ubicación y muestra el clima de tu ciudad, con opción de buscar manualmente otras.  
+- **Pronóstico de hoy (por horas)**: tarjeta con las próximas horas, mostrando temperatura, iconos y evolución del tiempo durante el día.  
+- **Condiciones del aire**: información detallada sobre sensación térmica, velocidad del viento, probabilidad de lluvia y nivel de radiación UV.  
+- **Pronóstico de 7 días**: tarjeta con máximas y mínimas de la semana, iconos de estado del cielo y evolución de las condiciones.  
+- **Evolución de temperaturas**: gráfica responsive que muestra la tendencia de temperaturas máximas y mínimas (7 días en escritorio, 3 días en móvil).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 📌 Menú Ciudades
+- **Buscador de ciudades**: permite localizar rápidamente cualquier ciudad del mundo.  
+- **Dropdown de selección**: lista desplegable para cambiar entre ciudades guardadas o buscadas recientemente.  
+- **Gestión sencilla**: facilita comparar condiciones meteorológicas entre diferentes ubicaciones.
 
-## Learn More
+### 📌 Menú Mapa
+- **Mapa interactivo**: vista geográfica que permite explorar el mapa y añadir ciudades con un buscador.   
+- **Visualización clara**: ayuda a ubicar la localización antes de consultar el pronóstico. 
 
-To learn more about Next.js, take a look at the following resources:
+### 📌 Menú Estado del mar
+- **Buscador de ciudades costeras**: permite consultar condiciones marinas en cualquier ubicación.  
+- **Gráfica de altura de olas (mobile-first)**: muestra la evolución de la altura de las olas en las próximas horas.  
+- **Tarjetas de condiciones marinas**: información sobre altura, dirección y periodo de las olas.  
+- **Condiciones de viento**: velocidad máxima y dirección dominante del día, complementando el estado del mar.  
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Instalación
+1. Clonar el repositorio: git clone (Aquí pondré mi git)
+2. Instalar dependencias: npm install
+3. Crear archivo .env.local en la raíz del proyecto
+API KEY: NEXT_PUBLIC_WEATHER_API_KEY=TU_API_KEY
+4. Ejecutar en modo desarrollo: npm run dev
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Capturas
 
-## Deploy on Vercel
+### Desktop 
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### Estado del mar
+![Captura Desktop Estado del mar](./public/Captura-Desktop-Estado-del-mar.png)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+#### Clima
+![Captura Desktop Clima](./public/Captura-Desktop-Clima.png)
+
+#### Mapa
+![Captura Desktop Mapa](./public/Captura-Desktop-Mapa.png)
+
+---
+
+### Mobile
+
+#### Ciudades
+![Captura Mobile Ciudades](./public/Captura-Mobile-Ciudades.png)
+
+#### Clima
+![Captura Mobile Clima](./public/Captura-Mobile-Clima.png)
+
+#### Estado del mar
+![Captura Mobile Estado del mar](./public/Captura-Mobile-Estado-del-mar.png)
+
+#### Mapa
+![Captura Mobile Mapa](./public/Captura-Mobile-Mapa.png)
+
+## Licencia 
+MIT 
