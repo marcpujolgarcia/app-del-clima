@@ -162,7 +162,7 @@ export default function MarPage() {
           },
           tooltip: {
             callbacks: {
-              label: (ctx) => ` ${ctx.parsed.y.toFixed(2)} m`,
+              label: (ctx) => ctx.parsed.y != null ? `${ctx.parsed.y.toFixed(2)} m` : "",
             },
           },
         },
