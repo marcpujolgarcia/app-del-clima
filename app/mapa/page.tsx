@@ -4,6 +4,7 @@ import { useState } from "react";
 import Sidebar from "@/components/Sidebar";
 import dynamic from "next/dynamic";
 import L from "leaflet";
+import "leaflet/dist/leaflet.css"; // 👈 Importa los estilos de Leaflet
 
 const API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
 
