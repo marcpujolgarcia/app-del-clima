@@ -1,10 +1,11 @@
 "use client";
+export const dynamic = "force-dynamic";
 
 import { useState } from "react";
 import Sidebar from "@/components/Sidebar";
-import dynamic from "next/dynamic";
+import nextDynamic from "next/dynamic";
 import L from "leaflet";
-import "leaflet/dist/leaflet.css"; // 👈 Importa los estilos de Leaflet
+import "leaflet/dist/leaflet.css";
 
 const API_KEY = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
 
@@ -18,20 +19,19 @@ type CityWeather = {
   description: string;
 };
 
-// Importamos los componentes de react-leaflet de forma dinámica (solo cliente)
-const MapContainer = dynamic(
+const MapContainer = nextDynamic(
   () => import("react-leaflet").then((mod) => mod.MapContainer),
   { ssr: false }
 );
-const TileLayer = dynamic(
+const TileLayer = nextDynamic(
   () => import("react-leaflet").then((mod) => mod.TileLayer),
   { ssr: false }
 );
-const Marker = dynamic(
+const Marker = nextDynamic(
   () => import("react-leaflet").then((mod) => mod.Marker),
   { ssr: false }
 );
-const Popup = dynamic(
+const Popup = nextDynamic(
   () => import("react-leaflet").then((mod) => mod.Popup),
   { ssr: false }
 );
@@ -46,7 +46,6 @@ export default function MapaPage() {
     try {
       setError(null);
 
-      // 1. Buscar coordenadas de la ciudad
       const geoRes = await fetch(
         `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(
           query
@@ -57,7 +56,6 @@ export default function MapaPage() {
 
       const { lat, lon, name, country } = geoData[0];
 
-      // 2. Buscar clima actual
       const weatherRes = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&lang=es&appid=${API_KEY}`
       );
@@ -80,7 +78,6 @@ export default function MapaPage() {
     }
   };
 
-  // Crear icono personalizado con el icono de OpenWeather
   const createIcon = (icon: string) =>
     L.icon({
       iconUrl: `https://openweathermap.org/img/wn/${icon}@2x.png`,
@@ -95,7 +92,6 @@ export default function MapaPage() {
         <div className="grid grid-cols-1 md:grid-cols-[256px_1fr] gap-6">
           <Sidebar />
           <div className="flex flex-col gap-6 w-full">
-            {/* Buscador */}
             <div className="flex gap-2 w-full">
               <input
                 type="text"
@@ -115,10 +111,9 @@ export default function MapaPage() {
 
             {error && <p className="text-red-400 text-sm">{error}</p>}
 
-            {/* Mapa */}
             <div className="relative z-0">
               <MapContainer
-                center={[40.4168, -3.7038]} // Madrid por defecto
+                center={[40.4168, -3.7038]}
                 zoom={6}
                 style={{ height: "600px", width: "100%", borderRadius: "12px" }}
                 className="z-0"
