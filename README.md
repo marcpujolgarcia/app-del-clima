@@ -3,7 +3,6 @@
 Aplicación web responsive (mobile-first) para consultar clima actual, pronóstico de hoy, condiciones del aire y pronóstico de 7 días, con gráficas sencillas.
 
 ## Demo
-## Demo
 👉 [Ver demo en Vercel](https://app-del-clima-umber.vercel.app/)
 
 ## Tecnologías
