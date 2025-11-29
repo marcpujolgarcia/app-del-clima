@@ -6,10 +6,12 @@ Aplicación web responsive (mobile-first) para consultar clima actual, pronósti
 👉 [Ver demo en Vercel](https://app-del-clima-umber.vercel.app/)
 
 ## Tecnologías
-- Next.js, React
-- Tailwind CSS
-- Chart.js
-- OpenWeather API (clima), Open-Meteo (mar)
+- [Next.js](https://nextjs.org/)
+- [React](https://react.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Chart.js](https://www.chartjs.org/)
+- [OpenWeather API](https://openweathermap.org/api) (clima)
+- [Open-Meteo](https://open-meteo.com/) (mar)
 
 ## Características
 
@@ -36,11 +38,17 @@ Aplicación web responsive (mobile-first) para consultar clima actual, pronósti
 - **Condiciones de viento**: velocidad máxima y dirección dominante del día, complementando el estado del mar.  
 
 ## Instalación
-1. Clonar el repositorio: git clone (Aquí pondré mi git)
-2. Instalar dependencias: npm install
-3. Crear archivo .env.local en la raíz del proyecto
-API KEY: NEXT_PUBLIC_WEATHER_API_KEY=TU_API_KEY
-4. Ejecutar en modo desarrollo: npm run dev
+1. Clonar el repositorio:  
+git clone https://github.com/marcpujolgarcia/app-del-clima.git  
+cd app-del-clima
+2. Instalar dependencias:  
+npm install
+3. Crear un archivo .env.local en la raíz del proyecto y añadir la API Key:  
+NEXT_PUBLIC_WEATHER_API_KEY=TU_API_KEY
+4. Ejecutar en modo desarrollo:  
+npm run dev
+5. Abrir en el navegador:  
+http://localhost:3000
 
 ## Capturas
 
